@@ -11,6 +11,6 @@ $ ./sbt
 > browse
 ```
 
-If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
+If `browse` doesn't launch your browser, manually open [http://localhost:8080/upload/swagger-ui/index.html](http://localhost:8080/upload/swagger-ui/index.html) in your browser.
 
 This example uses code from Swagger-UI - see https://github.com/wordnik/swagger-ui

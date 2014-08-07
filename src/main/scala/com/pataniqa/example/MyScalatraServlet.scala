@@ -2,10 +2,13 @@ package com.pataniqa.example
 
 import java.io.File
 
+import scala.concurrent.ExecutionContext
+import scala.concurrent.Future
 import scala.io.Source
 
 import org.json4s.DefaultFormats
 import org.json4s.Formats
+import org.scalatra.FutureSupport
 import org.scalatra.ScalatraServlet
 import org.scalatra.json.NativeJsonSupport
 import org.scalatra.servlet.FileUploadSupport
@@ -15,19 +18,10 @@ import org.scalatra.swagger.Swagger
 import org.scalatra.swagger.SwaggerSupport
 import org.slf4j.LoggerFactory
 
-import org.scalatra.AsyncResult
-import org.scalatra.FutureSupport
-import org.scalatra.ScalatraServlet
+import _root_.akka.actor.ActorSystem
 
-import akka.actor.ActorSystem
-import dispatch._
-import org.scalatra._
-
-import scala.concurrent.{ ExecutionContext, Future, Promise }
-import scala.util.{ Failure, Success, Try }
-
-class MyScalatraServlet(implicit val system: ActorSystem, val swagger: Swagger) extends ScalatraServlet
-  with NativeJsonSupport with SwaggerSupport with FileUploadSupport with FutureSupport {
+class MyScalatraServlet(implicit val system: ActorSystem, val swagger: Swagger) extends 
+	MyScalatraWebAppStack with NativeJsonSupport with SwaggerSupport with FileUploadSupport with FutureSupport {
 
   protected implicit def executor: ExecutionContext = system.dispatcher
 

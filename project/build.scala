@@ -20,13 +20,16 @@ object FileuploadexampleBuild extends Build {
       name := Name,
       version := Version,
       scalaVersion := ScalaVersion,
-      resolvers += Classpaths.typesafeReleases,
+      resolvers ++= Seq(
+        "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
+        "webjars" at "http://webjars.github.com/m2"),
       libraryDependencies ++= Seq(
         "org.json4s"   %% "json4s-native" % "3.2.9",
         "org.scalatra" %% "scalatra-swagger"  % ScalatraVersion,
         "org.scalatra" %% "scalatra" % ScalatraVersion,
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
+        "org.webjars" % "swagger-ui" % "2.0.21",
         "com.typesafe.akka" %% "akka-actor" % "2.3.4",
         "net.databinder.dispatch" %% "dispatch-core" % "0.11.1",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",

@@ -1,12 +1,9 @@
 import org.scalatra.LifeCycle
 
-import com.pataniqa.example.FileUploadSwagger
-import com.pataniqa.example.MyScalatraServlet
-import com.pataniqa.example.ResourcesApp
+import com.pataniqa.example._
 
+import _root_.akka.actor.ActorSystem
 import javax.servlet.ServletContext
-
-import _root_.akka.actor.{ Props, ActorSystem }
 
 class ScalatraBootstrap extends LifeCycle {
 
