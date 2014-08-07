@@ -53,18 +53,17 @@ class MyScalatraServlet(implicit val system: ActorSystem, val swagger: Swagger) 
       summary "Upload a CSV file using a Future")
 
   post("/csvf", operation(postCsvFuture)) {
-    new AsyncResult {
-      val is = Future {
-        fileParams.get("csv") match {
-          case Some(file) =>
-            logger.info(s"Received ${file.getName} ${file.getSize}")
-            val lines = Source.fromInputStream(file.getInputStream).getLines
-            val csv = lines.mkString("\n")
-            Result(csv)
-          case None =>
-            Result("no CSV file uploaded")
+    fileParams.get("csv") match {
+      case Some(file) =>
+        logger.info(s"Received ${file.getName} ${file.getSize}")
+        val lines = Source.fromInputStream(file.getInputStream).getLines
+        val csv = lines.mkString("\n")
+        Future {
+          logger.info(csv)
         }
-      }
+        Result(csv)
+      case None =>
+        Result("no CSV file uploaded")
     }
   }
 
